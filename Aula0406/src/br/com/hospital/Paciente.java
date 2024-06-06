@@ -9,7 +9,20 @@ public class Paciente extends Pessoa {
 	String cidade;
 	String complemento;
 	String cep;
-	String telefonePaciente;
+	String telefonePaciente[];
+		
+	public Paciente(String nomeCompleto,String dataNascimento ,char genero , String rua, int numero, String bairro, String cidade, String estado, String complemento, String cep) {
+		this.setNomeCompleto(nomeCompleto);
+		this.setDataNascimento( dataNascimento);
+		this.setGenero(getGenero());;
+		this.setRua(rua);
+		this.setNumero(getNumero());
+		this.setBairro(bairro);
+		this.setCidade(cidade);
+		this.setEstado(estado);
+		this.setComplemento(complemento);
+		this.setCep(cep);
+	}	
 	public String getDataNascimento() {
 		return dataNascimento;
 	}
@@ -58,10 +71,5 @@ public class Paciente extends Pessoa {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	public String getTelefonePaciente() {
-		return telefonePaciente;
-	}
-	public void setTelefonePaciente(String telefonePaciente) {
-		this.telefonePaciente = telefonePaciente;
-	}
+	
 }
