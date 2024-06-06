@@ -4,4 +4,5 @@ public class Receita {
 	
 	protected String descricao;
 
+	
 }
