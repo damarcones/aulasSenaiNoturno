@@ -12,7 +12,8 @@ public class Paciente {
 	protected String complemento;
 	protected String cep;
 	protected String telefonePaciente[];
-	protected int i,n;
+	
+	public Paciente() {}
 	
 	public Paciente(String nomeCompleto,String dataNascimento ,String sexo , String rua,String numero, String bairro, String cidade, String estado, String complemento, String cep) {
 		this.setNomeCompleto(nomeCompleto);
@@ -25,7 +26,7 @@ public class Paciente {
 		this.setEstado(estado);
 		this.setComplemento(complemento);
 		this.setCep(cep);
-		System.out.println("Configurando dado do medico, um instante.");
+		System.out.println("Configurando dado do paciente, um instante.");
 	}
 	
 	public String getNomeCompleto() {
@@ -88,13 +89,17 @@ public class Paciente {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-	
-	public void setNumeroTelefone(String nova) {
-		n++;
-		for (i=n-1; i<n; i++) {
-			this.telefonePaciente[n-1] = nova; 
-		}
+	/**
+	 * @return
+	 */
+	public String dadosDoPaciente() {
+		String dados = "\nNome do Paciente: " + this.getNomeCompleto();
+		dados += "\nData: " + this.getDataNascimento();
+		dados += "\nGenero: " + this.getSexo();
+		dados += "\nEndereço: "+ this.getRua() + ", " +this.getNumero() +", "+this.getBairro() +", "+this.getCidade() +", "+this.getEstado() +", "+this.getComplemento() +", "+this.getCep() +".";
+		return dados;
 	}
 	
+
 	
 }
