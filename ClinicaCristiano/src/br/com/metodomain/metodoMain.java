@@ -60,17 +60,39 @@ public class metodoMain {
         int result = JOptionPane.showConfirmDialog(null, panel, "Cadastro de Paciente",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-        // Processa os valores inseridos pelo usuário
+     // Processa os valores inseridos pelo usuário
         if (result == JOptionPane.OK_OPTION) {
-            p.setNomeCompleto(nomeCompletoField.getText());
-            p.settelefonePaciente(telefoneField.getText());
-            p.setDataNascimento(dataNascimentoField.getText());
-            p.setSexo(sexoField.getText());
-            p.setBairro(bairroField.getText());
-            p.setCidade(cidadeField.getText());
-            p.setEstado(estadoField.getText());
-            p.setCep(Integer.parseInt(cepField.getText()));
+            boolean cepValido = false;
+            while (!cepValido) {
+                try {
+                    // Preenche os campos do objeto p com os valores inseridos pelo usuário
+                    p.setNomeCompleto(nomeCompletoField.getText());
+                    p.settelefonePaciente(telefoneField.getText());
+                    p.setDataNascimento(dataNascimentoField.getText());
+                    p.setSexo(sexoField.getText());
+                    p.setBairro(bairroField.getText());
+                    p.setCidade(cidadeField.getText());
+                    p.setEstado(estadoField.getText());
 
+                    // Verifica se o campo CEP contém apenas números antes de converter para inteiro
+                    String cep = cepField.getText();
+                    if (!cep.matches("[0-9]+")) {
+                        throw new NumberFormatException();
+                    }
+                    p.setCep(Integer.parseInt(cep));
+
+                    // Define cepValido como true se tudo estiver correto
+                    cepValido = true;
+                } catch (NumberFormatException e) {
+                    // Exibe uma mensagem de erro se ocorrer um problema ao converter o CEP para inteiro
+                    JOptionPane.showMessageDialog(null, "Erro ao inserir o CEP. Certifique-se de que o campo contém apenas números.");
+
+                    // Solicita ao usuário que insira o CEP novamente
+                    String novoCep = JOptionPane.showInputDialog("Digite o CEP novamente:");
+                    cepField.setText(novoCep);
+                }
+            }
+            // Exibe uma mensagem de sucesso após o cadastro ser finalizado
             JOptionPane.showMessageDialog(null, "Cadastro finalizado com sucesso!");
         }
 
